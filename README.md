@@ -37,13 +37,6 @@ The treatment effect was estimated as the difference in mean glucose change betw
 
 A two-sided Welch two-sample t-test was used with a significance level of 0.05.
 
-Additional analyses included:
-
-- Data visualization
-- 95% confidence interval
-- Q-Q plots
-- Assumption checking
-
 ## Results
 
 | Statistic | Result |
