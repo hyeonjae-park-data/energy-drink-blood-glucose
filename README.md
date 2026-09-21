@@ -2,7 +2,7 @@
 
 ## Overview
 
-This project investigated whether a 250 mL caffeinated energy drink, compared with a 250 mL caffeine-free energy drink, affects short-term blood glucose change among simulated Arcadia adults aged 20–39.
+This project investigated whether a 250 mL caffeinated energy drink, compared with a 250 mL caffeine-free energy drink, affects short-term changes in blood glucose among simulated Arcadia adults aged 20–39.
 
 ## Research Question
 
@@ -18,7 +18,7 @@ Does consuming a 250 mL caffeinated energy drink, compared with a 250 mL caffein
 
 ## Data Preparation
 
-The raw dataset contained 46 records, including 42 primary assignments and 4 reserve assignments.
+The raw dataset contained 46 records, including 42 primary participants and 4 reserve participants.
 
 After applying the predefined criteria for primary participants and usable primary responses, 42 participants were included in the primary analysis.
 
@@ -32,6 +32,8 @@ After applying the predefined criteria for primary participants and usable prima
 The primary treatment contrast was defined as:
 
 **Caffeinated − Caffeine-free**
+
+The treatment effect was estimated as the difference in mean glucose change between the two groups.
 
 A two-sided Welch two-sample t-test was used with a significance level of 0.05.
 
@@ -54,6 +56,8 @@ Additional analyses included:
 | p-value | 0.208 |
 
 The caffeinated group had a mean glucose change of 31.43 mg/dL, compared with 33.81 mg/dL in the caffeine-free group.
+
+The estimated treatment effect was −2.38 mg/dL, meaning that the caffeinated group had an average glucose change 2.38 mg/dL lower than the caffeine-free group.
 
 ## Conclusion
 
