@@ -39,7 +39,6 @@ A two-sided Welch two-sample t-test was used with a significance level of 0.05.
 
 Additional analyses included:
 
-- Descriptive statistics
 - Data visualization
 - 95% confidence interval
 - Q-Q plots
