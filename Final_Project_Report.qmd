@@ -1,0 +1,215 @@
+---
+title: "The Effect of Caffeinated vs. Caffeine-Free Energy Drinks on Blood Glucose Change"
+author: "Hyeonjae Park"
+format: pdf
+editor: visual
+---
+
+# Abstract
+
+This project investigated whether consuming a 250 mL caffeinated energy drink, compared with a 250 mL caffeine-free energy drink, affects short-term blood glucose change. Using the Islanders simulation platform, I designed and conducted a completely randomized experiment involving 42 simulated Arcadia residents aged 20–39, with 21 participants assigned to each treatment group. The primary response variable was the change in blood glucose from baseline to 9–11 minutes after treatment. The estimated treatment effect, defined as caffeinated minus caffeine-free, was −2.38 mg/dL (95% CI: −6.14 to 1.38 mg/dL). A two-sided Welch two-sample t-test produced a p-value of 0.208, providing insufficient evidence of a difference in short-term blood glucose change between the two treatment groups.
+
+# Scientific Question and Rationale
+
+**Scientific question.** Does consuming a 250 mL caffeinated energy drink, compared with a 250 mL caffeine-free energy drink, affect short-term blood glucose change among simulated Arcadia adults aged 20–39?
+
+Energy drinks are widely consumed, but the short-term effects of caffeine on blood glucose are not straightforward. This project used the Islanders simulation platform to investigate whether caffeine-containing and caffeine-free energy drinks produce different short-term changes in blood glucose.e.
+
+# Methods
+
+The results most reasonably apply to eligible, consenting Arcadia adults aged 20--39 who could participate under the study's recruitment procedure. Because participants were not obtained through a simple random sample of the entire Arcadia population, broader population generalization should be made cautiously.
+
+No blinding was used in this experiment.
+
+## Participants, Design, and Protocol
+
+Participants were recruited from Arcadia using the registered recruitment procedure. Eligible participants were Arcadia residents aged 20--39 who consented to participate. At most one Islander from each household was enrolled.
+
+The experimental unit and response unit were both one individual Islander. The experiment had one treatment factor, caffeine status, with two levels: a 250 mL caffeinated energy drink and a 250 mL caffeine-free energy drink.
+
+A completely randomized design was used. A total of 42 participants were assigned to treatment, with 21 participants assigned to each treatment group. No blocking factor was used.
+
+Blood glucose was measured immediately before treatment. Participants then received their assigned 250 mL energy drink, and blood glucose was measured again 9--11 minutes after treatment. The primary response was glucose change, defined as
+
+\[ \text{Glucose Change} = \text{Post-treatment Glucose} - \text{Baseline Glucose}. \]
+
+The response was measured in mg/dL.
+
+The study planned for 42 independent experimental units, with 21 participants per treatment group. Using a conservative planning standard deviation of 11 mg/dL, this design had approximately 82% power to detect a 10 mg/dL difference in mean glucose change. The expected full width of the 95% confidence interval was approximately 13.72 mg/dL.
+
+# Data and Results
+
+## Data Import and Audit
+
+```{r}
+data <- read.csv("caffeine_glucose_FINAL_RAW.csv")
+
+dim(data)
+names(data)
+```
+
+```{r}
+table(data$Assignment_Type, useNA = "ifany")
+table(data$Treatment, useNA = "ifany")
+table(data$Usable_Primary_Response, useNA = "ifany")
+```
+
+```{r}
+final <- subset(
+  data,
+  Assignment_Type == "Primary" &
+    Usable_Primary_Response == "Yes"
+)
+
+nrow(final)
+table(final$Treatment)
+```
+
+A total of 42 primary participants were enrolled and assigned to treatment. All 42 participants had a usable primary response and were included in the primary analysis. There were no missing primary outcomes and no participants were excluded from the primary analysis. The final analysis therefore included 42 experimental units: 21 assigned to the caffeinated treatment and 21 assigned to the caffeine-free treatment. None of the four prespecified reserve assignments was used.
+
+One scheduling deviation occurred because final confirmatory data collection continued beyond the registered August 26 data-collection end date. However, the treatment assignments, primary response definition, measurement window, and registered primary analysis were not changed.
+
+## Descriptive Statistics
+
+```{r}
+caff <- final$Glucose_Change_mg_dL[
+  final$Treatment == "Caffeinated"
+]
+
+free <- final$Glucose_Change_mg_dL[
+  final$Treatment == "Caffeine-free"
+]
+
+summary_table <- data.frame(
+  Treatment = c("Caffeinated", "Caffeine-free"),
+  n = c(length(caff), length(free)),
+  Mean = c(mean(caff), mean(free)),
+  SD = c(sd(caff), sd(free)),
+  Median = c(median(caff), median(free)),
+  Minimum = c(min(caff), min(free)),
+  Maximum = c(max(caff), max(free))
+)
+
+summary_table[, 3:7] <- round(summary_table[, 3:7], 2)
+
+knitr::kable(
+  summary_table,
+  caption = "Descriptive statistics for glucose change by treatment group."
+)
+```
+
+## Visualization of Glucose Change
+
+```{r}
+boxplot(
+  Glucose_Change_mg_dL ~ Treatment,
+  data = final,
+  xlab = "Treatment",
+  ylab = "Glucose change (mg/dL)",
+  main = "Blood Glucose Change by Treatment"
+)
+
+stripchart(
+  Glucose_Change_mg_dL ~ Treatment,
+  data = final,
+  vertical = TRUE,
+  method = "jitter",
+  pch = 16,
+  add = TRUE
+)
+```
+
+All 42 primary participants had usable glucose-change measurements, with 21 participants in each treatment group. The mean glucose change was 31.43 mg/dL in the caffeinated group (SD = 5.50 mg/dL) and 33.81 mg/dL in the caffeine-free group (SD = 6.50 mg/dL). The median glucose change was 31 mg/dL in both groups. The observed glucose changes ranged from 22 to 43 mg/dL in the caffeinated group and from 22 to 48 mg/dL in the caffeine-free group.
+
+The distributions show substantial overlap between the two treatment groups. The caffeine-free group had a slightly higher mean glucose change and somewhat greater variability, but the difference between the groups appears small relative to the within-group variation.
+
+## Registered Primary Analysis
+
+The registered primary contrast was the mean glucose change in the caffeinated group minus the mean glucose change in the caffeine-free group. The null and alternative hypotheses were
+
+\[ H_0:\mu*{*\text{caffeinated}}-\mu{\text{caffeine-free}}=0 \]
+
+and
+
+\[ H_A:\mu*{*\text{caffeinated}}-\mu{\text{caffeine-free}}\neq0. \]
+
+A two-sided independent two-sample t-test was used with a significance level of (\alpha=0.05).
+
+```{r}
+# Registered treatment contrast
+mean_caff <- mean(caff)
+mean_free <- mean(free)
+
+mean_difference <- mean_caff - mean_free
+mean_difference
+```
+
+```{r}
+primary_test <- t.test(
+  caff,
+  free,
+  alternative = "two.sided",
+  conf.level = 0.95
+)
+
+primary_test
+```
+
+```{r}
+primary_results <- data.frame(
+  Estimate_mg_dL = mean_difference,
+  SE = unname(primary_test$stderr),
+  CI_Lower = primary_test$conf.int[1],
+  CI_Upper = primary_test$conf.int[2],
+  t = unname(primary_test$statistic),
+  df = unname(primary_test$parameter),
+  p_value = primary_test$p.value
+)
+
+primary_results <- round(primary_results, 3)
+
+knitr::kable(
+  primary_results,
+  caption = "Registered primary treatment comparison: Caffeinated minus Caffeine-free."
+)
+```
+
+The mean glucose change was 31.43 mg/dL in the caffeinated group and 33.81 mg/dL in the caffeine-free group. The registered treatment contrast, defined as Caffeinated minus Caffeine-free, was therefore -2.38 mg/dL.
+
+The estimated mean difference was -2.38 mg/dL (95% CI: -6.14 to 1.38 mg/dL). The two-sided Welch two-sample t-test gave (t = -1.28), (df = 38.93), and (p = 0.208). Because the confidence interval includes 0 and the p-value is greater than 0.05, we fail to reject the null hypothesis. There is no statistically significant evidence that the mean short-term glucose change differs between the caffeinated and caffeine-free treatment groups.
+
+## Assumption and Diagnostic Checks
+
+```{r}
+par(mfrow = c(1, 2))
+
+qqnorm(
+  caff,
+  main = "Q-Q Plot: Caffeinated"
+)
+qqline(caff)
+
+qqnorm(
+  free,
+  main = "Q-Q Plot: Caffeine-free"
+)
+qqline(free)
+
+par(mfrow = c(1, 1))
+```
+
+The Q-Q plots show that the glucose-change distributions in both treatment groups are reasonably consistent with approximate normality. Some departures from the reference lines are visible in the tails, but there are no severe deviations or extreme outliers. The earlier boxplot also does not indicate any extreme outliers. Therefore, the normality assumption for the two-sample t-test appears reasonable.
+
+Independence was supported by the experimental design because treatment was randomly assigned to individual experimental units. The Welch two-sample t-test does not require the two treatment groups to have equal variances.
+
+# Conclusion and Discussion
+
+The caffeinated group had a mean glucose increase of 31.43 mg/dL, while the caffeine-free group had a mean increase of 33.81 mg/dL. The estimated treatment effect, defined as Caffeinated minus Caffeine-free, was -2.38 mg/dL (95% CI: -6.14 to 1.38 mg/dL). The two-sided Welch two-sample t-test produced (p = 0.208). Therefore, we did not find statistically significant evidence that consuming the caffeinated energy drink caused a different short-term change in blood glucose compared with the caffeine-free energy drink.
+
+This result should not be interpreted as proving that caffeine has no effect on blood glucose. Rather, the data are consistent with a range of possible treatment effects that includes zero. In this experiment, the observed difference between the two treatment groups was small relative to the variation among participants.
+
+There are several limitations to the study. First, participants were recruited from Arcadia and were limited to adults aged 20--39, so the results may not generalize to people from other populations or age groups. Second, the experiment examined only one 250 mL energy drink treatment and measured blood glucose only 9--11 minutes after treatment. Therefore, the results do not address other drink amounts, other energy-drink products, or longer-term effects of caffeine on blood glucose. Third, recruitment was based on participants responding to the study recruitment procedure rather than a simple random sample of the entire Arcadia population, which limits the scope of population-level generalization.
+
+Final confirmatory data collection also continued beyond the originally registered August 26 end date. However, the treatment allocation, eligibility criteria, response definition, measurement window, and registered primary analysis were not changed. All 42 primary experimental units had usable responses, and no participants were excluded from the primary analysis.
+
+Overall, within the conditions of this experiment, the results do not provide evidence of a meaningful short-term difference in blood glucose change between the caffeinated and caffeine-free energy-drink groups.
