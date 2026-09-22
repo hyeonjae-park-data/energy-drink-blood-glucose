@@ -84,5 +84,5 @@ This result should not be interpreted as proving that caffeine has no effect on 
 - Data Import
 - Data Cleaning
 - Data Validation
-- Exploratory Data Analysis
+- Data Analysis
 - Data Visualization
