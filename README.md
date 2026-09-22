@@ -60,6 +60,7 @@ This result should not be interpreted as proving that caffeine has no effect on 
 ## Limitations
 
 - The study used simulated Arcadia participants aged 20–39.
+- The sample size was relatively small (42 participants), which may have limited the precision of the estimated treatment effect.
 - Participants were not selected through a simple random sample of the broader Arcadia population.
 - Only one 250 mL energy-drink treatment was studied.
 - Blood glucose was measured only 9–11 minutes after treatment.
