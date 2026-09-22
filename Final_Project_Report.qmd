@@ -127,11 +127,9 @@ The distributions show substantial overlap between the two treatment groups. The
 
 The registered primary contrast was the mean glucose change in the caffeinated group minus the mean glucose change in the caffeine-free group. The null and alternative hypotheses were
 
-\[ H_0:\mu*{*\text{caffeinated}}-\mu{\text{caffeine-free}}=0 \]
+$$H_0: \mu_{\text{caffeinated}} - \mu_{\text{caffeine-free}} = 0$$
 
-and
-
-\[ H_A:\mu*{*\text{caffeinated}}-\mu{\text{caffeine-free}}\neq0. \]
+$$H_A: \mu_{\text{caffeinated}} - \mu_{\text{caffeine-free}} \neq 0$$
 
 A two-sided independent two-sample t-test was used with a significance level of (\alpha=0.05).
 
