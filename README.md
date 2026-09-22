@@ -84,6 +84,7 @@ This result should not be interpreted as proving that caffeine has no effect on 
 - Assumption Checking
 
 **Data Skills**
+- Data Collection 
 - Data Import
 - Data Cleaning
 - Data Validation
