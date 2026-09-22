@@ -75,7 +75,6 @@ This result should not be interpreted as proving that caffeine has no effect on 
 **Statistical Methods**
 - Experimental Design
 - Randomization
-- Descriptive Statistics
 - Welch Two-Sample t-Test
 - Confidence Intervals
 - Statistical Inference
