@@ -13,7 +13,7 @@ This project investigated whether consuming a 250 mL caffeinated energy drink, c
 
 **Scientific question.** Does consuming a 250 mL caffeinated energy drink, compared with a 250 mL caffeine-free energy drink, affect short-term blood glucose change among simulated Arcadia adults aged 20–39?
 
-Energy drinks are widely consumed, but the short-term effects of caffeine on blood glucose are not straightforward. This project used the Islanders simulation platform to investigate whether caffeine-containing and caffeine-free energy drinks produce different short-term changes in blood glucose.e.
+Energy drinks are widely consumed, but the short-term effects of caffeine on blood glucose are not straightforward. This project used the Islanders simulation platform to investigate whether caffeine-containing and caffeine-free energy drinks produce different short-term changes in blood glucose.
 
 # Methods
 
@@ -131,7 +131,7 @@ $$H_0: \mu_{\text{caffeinated}} - \mu_{\text{caffeine-free}} = 0$$
 
 $$H_A: \mu_{\text{caffeinated}} - \mu_{\text{caffeine-free}} \neq 0$$
 
-A two-sided independent two-sample t-test was used with a significance level of (\alpha=0.05).
+A two-sided independent two-sample t-test was used with a significance level of $\alpha=0.05$.
 
 ```{r}
 # Registered treatment contrast
@@ -206,8 +206,8 @@ The caffeinated group had a mean glucose increase of 31.43 mg/dL, while the caff
 
 This result should not be interpreted as proving that caffeine has no effect on blood glucose. Rather, the data are consistent with a range of possible treatment effects that includes zero. In this experiment, the observed difference between the two treatment groups was small relative to the variation among participants.
 
-There are several limitations to the study. First, participants were recruited from Arcadia and were limited to adults aged 20--39, so the results may not generalize to people from other populations or age groups. Second, the experiment examined only one 250 mL energy drink treatment and measured blood glucose only 9--11 minutes after treatment. Therefore, the results do not address other drink amounts, other energy-drink products, or longer-term effects of caffeine on blood glucose. Third, recruitment was based on participants responding to the study recruitment procedure rather than a simple random sample of the entire Arcadia population, which limits the scope of population-level generalization.
+There are several limitations to the study. First, participants were recruited from Arcadia and were limited to adults aged 20--39, so the results may not generalize to people from other populations or age groups. Second, the experiment examined only one 250 mL energy drink treatment and measured blood glucose only 9--11 minutes after treatment. Therefore, the results do not address other drink amounts, other energy-drink products, or longer-term effects of caffeine on blood glucose. Third, recruitment was based on participants responding to the study recruitment procedure rather than a simple random sample of the entire Arcadia population, which limits the scope of population-level generalization. Fourth, the sample size was relatively small (42 participants), which may have limited the precision of the estimated treatment effect.
 
 Final confirmatory data collection also continued beyond the originally registered August 26 end date. However, the treatment allocation, eligibility criteria, response definition, measurement window, and registered primary analysis were not changed. All 42 primary experimental units had usable responses, and no participants were excluded from the primary analysis.
 
-Overall, within the conditions of this experiment, the results do not provide evidence of a meaningful short-term difference in blood glucose change between the caffeinated and caffeine-free energy-drink groups.
+Overall, within the conditions of this experiment, the results do not provide evidence of a statistically significant short-term difference in blood glucose change between the caffeinated and caffeine-free energy-drink groups.
